@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web制作ポートフォリオ | LP・Webサイト制作</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fafaf8;--bg-alt:#f2f1ed;--card-bg:#ffffff;
+  --text:#1a1a1a;--text-mid:#555;--text-light:#999;
+  --accent:#2d5bf0;--accent-hover:#1d4ad8;--accent-bg:rgba(45,91,240,.06);
+  --border:#e5e5e0;
+  --green:#10b981;--green-bg:rgba(16,185,129,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP','DM Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.8;font-weight:400;overflow-x:hidden}
+.container{max-width:1040px;margin:0 auto;padding:0 24px}
+.sec{padding:90px 0}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.rv.v{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(250,250,248,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-name{font-family:'Sora',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.02em;color:var(--text)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-size:.75rem;color:var(--text-mid);text-decoration:none;transition:color .2s;letter-spacing:.02em}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{padding:8px 18px!important;background:var(--accent)!important;color:#fff!important;border-radius:6px!important;font-weight:600!important;transition:background .2s!important}
+.nav-cta:hover{background:var(--accent-hover)!important}
+@media(max-width:768px){.nav-links{display:none}.nav{padding:0 20px}}
+
+/* HERO */
+.hero{padding:140px 0 80px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:var(--green-bg);border-radius:20px;font-size:.72rem;color:var(--green);font-weight:500;margin-bottom:20px;opacity:0;animation:fu .7s ease .2s forwards}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-title{font-family:'Sora','Noto Sans JP',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;letter-spacing:-.01em;line-height:1.4;margin-bottom:14px;opacity:0;animation:fu .7s ease .4s forwards}
+.hero-sub{font-size:.92rem;color:var(--text-mid);max-width:540px;margin:0 auto 32px;line-height:2;opacity:0;animation:fu .7s ease .6s forwards}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fu .7s ease .8s forwards}
+.btn-main{padding:13px 30px;background:var(--accent);color:#fff;font-size:.85rem;font-weight:600;letter-spacing:.04em;text-decoration:none;border-radius:8px;transition:all .25s;font-family:'Noto Sans JP',sans-serif;border:none;cursor:pointer}
+.btn-main:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:0 4px 14px rgba(45,91,240,.2)}
+.btn-sec{padding:13px 30px;background:var(--card-bg);color:var(--text);font-size:.85rem;font-weight:500;letter-spacing:.04em;text-decoration:none;border-radius:8px;border:1px solid var(--border);transition:all .25s;font-family:'Noto Sans JP',sans-serif}
+.btn-sec:hover{border-color:var(--accent);color:var(--accent)}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:48px;padding:40px 0;opacity:0;animation:fu .7s ease 1s forwards}
+.stat{text-align:center}
+.stat-num{font-family:'Sora',sans-serif;font-size:1.8rem;font-weight:700;color:var(--accent);line-height:1.2}
+.stat-label{font-size:.7rem;color:var(--text-light);letter-spacing:.04em;margin-top:2px}
+@media(max-width:480px){.stats{gap:28px}.stat-num{font-size:1.4rem}}
+
+/* STRENGTH */
+.strength{background:var(--bg-alt)}
+.str-header{text-align:center;margin-bottom:50px}
+.str-tag{font-family:'Sora',sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:4px}
+.str-title{font-family:'Sora','Noto Sans JP',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:.01em}
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.str-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 24px;transition:transform .25s,box-shadow .25s}
+.str-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.04)}
+.str-icon{width:42px;height:42px;border-radius:10px;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:14px}
+.str-card-title{font-size:.9rem;font-weight:600;margin-bottom:6px}
+.str-card-desc{font-size:.78rem;color:var(--text-mid);line-height:2}
+@media(max-width:768px){.str-grid{grid-template-columns:1fr}}
+
+/* WORKS */
+.works{background:var(--bg)}
+.works-header{text-align:center;margin-bottom:50px}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.work-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.work-card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.06)}
+.work-thumb{aspect-ratio:16/10;position:relative;overflow:hidden}
+.work-thumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.work-card:hover .work-thumb-overlay{opacity:1}
+.work-thumb-btn{padding:10px 22px;background:#fff;color:var(--text);font-size:.75rem;font-weight:600;border-radius:6px;text-decoration:none;letter-spacing:.04em}
+.wt-realestate{background:linear-gradient(135deg,#1a1f2e,#2a3040,#1a2030)}
+.wt-beauty{background:linear-gradient(135deg,#e8d5cc,#dfc4b8,#d4b5a8)}
+.wt-gym{background:linear-gradient(135deg,#1a1a1a,#2a2a2a,#0f0f0f)}
+.work-body{padding:20px}
+.work-tags{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.work-tag-item{font-size:.62rem;padding:3px 8px;border-radius:4px;background:var(--bg-alt);color:var(--text-mid);letter-spacing:.04em;font-weight:500}
+.work-name{font-size:.95rem;font-weight:600;margin-bottom:4px}
+.work-desc{font-size:.78rem;color:var(--text-mid);line-height:1.9}
+@media(max-width:768px){.works-grid{grid-template-columns:1fr}}
+
+/* PRICE */
+.price{background:var(--bg-alt)}
+.price-header{text-align:center;margin-bottom:50px}
+.price-table-wrap{max-width:700px;margin:0 auto}
+.price-table{width:100%;border-collapse:collapse}
+.price-table th,.price-table td{padding:14px 16px;font-size:.85rem;text-align:left;border-bottom:1px solid var(--border)}
+.price-table th{font-weight:600;background:var(--card-bg);width:200px}
+.price-table td{color:var(--text-mid)}
+.price-table .price-val{font-family:'Sora',sans-serif;font-weight:700;color:var(--accent);font-size:1rem}
+.price-note{text-align:center;margin-top:20px;font-size:.75rem;color:var(--text-light);line-height:2}
+
+/* FLOW */
+.flow{background:var(--bg)}
+.flow-header{text-align:center;margin-bottom:50px}
+.flow-steps{max-width:650px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+.flow-step{display:flex;gap:20px;position:relative;padding-bottom:32px}
+.flow-step:last-child{padding-bottom:0}
+.flow-step::before{content:'';position:absolute;left:19px;top:40px;bottom:0;width:1px;background:var(--border)}
+.flow-step:last-child::before{display:none}
+.flow-num{width:40px;height:40px;flex-shrink:0;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:700;position:relative;z-index:1}
+.flow-body{}
+.flow-step-title{font-size:.9rem;font-weight:600;margin-bottom:2px}
+.flow-step-desc{font-size:.78rem;color:var(--text-mid);line-height:2}
+
+/* CTA */
+.cta{background:var(--text);color:#fff;padding:70px 0;text-align:center;border-radius:0}
+.cta-title{font-family:'Sora','Noto Sans JP',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:8px}
+.cta-sub{font-size:.88rem;color:rgba(255,255,255,.6);margin-bottom:30px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-wh{padding:14px 32px;background:#fff;color:var(--text);font-size:.85rem;font-weight:600;border-radius:8px;text-decoration:none;transition:all .25s;font-family:'Noto Sans JP',sans-serif;border:none;cursor:pointer}
+.btn-wh:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,255,255,.15)}
+.btn-outline-wh{padding:14px 32px;background:transparent;color:rgba(255,255,255,.8);font-size:.85rem;border:1px solid rgba(255,255,255,.25);border-radius:8px;text-decoration:none;transition:all .25s;font-family:'Noto Sans JP',sans-serif}
+.btn-outline-wh:hover{border-color:#fff;color:#fff}
+
+/* FORM */
+.form-sec{background:var(--bg)}
+.form-header{text-align:center;margin-bottom:50px}
+.form-wrap{max-width:600px;margin:0 auto;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:36px 32px}
+.form-row{margin-bottom:18px}
+.fl{display:block;font-size:.8rem;font-weight:600;margin-bottom:6px}
+.fl .rq{color:var(--accent);font-size:.68rem;margin-left:6px;font-weight:500}
+.fi,.fsl,.ft{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:6px;font-family:'Noto Sans JP',sans-serif;font-size:.85rem;color:var(--text);background:#fff;transition:border-color .2s}
+.fi:focus,.fsl:focus,.ft:focus{outline:none;border-color:var(--accent)}
+.fsl{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23999' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.ft{height:100px;resize:vertical}
+.fh{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fsub{display:block;width:100%;margin-top:20px;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'Noto Sans JP',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .2s}
+.fsub:hover{background:var(--accent-hover)}
+@media(max-width:768px){.fh{grid-template-columns:1fr}.form-wrap{padding:24px 20px}}
+
+/* FOOTER */
+.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:30px 0;text-align:center}
+.footer-text{font-size:.7rem;color:var(--text-light);letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-name">YOUR NAME</span>
+  <div class="nav-links">
+    <a href="#works">制作実績</a>
+    <a href="#price">料金</a>
+    <a href="#flow">ご依頼の流れ</a>
+    <a href="#contact" class="nav-cta">お問い合わせ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><span></span>お仕事のご依頼受付中</div>
+    <h1 class="hero-title">
+      売れるLP・Webサイトを<br>スピーディーに制作します
+    </h1>
+    <p class="hero-sub">
+      高品質なランディングページ・Webサイトを、業界平均の半分のコスト・スピードで制作。
+      集客に直結するデザインで、お客様のビジネスの成長をサポートします。
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-main">無料で相談する</a>
+      <a href="#works" class="btn-sec">制作実績を見る</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><p class="stat-num">50+</p><p class="stat-label">制作実績</p></div>
+      <div class="stat"><p class="stat-num">98%</p><p class="stat-label">満足度</p></div>
+      <div class="stat"><p class="stat-num">最短5日</p><p class="stat-label">納品スピード</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTH -->
+<section class="strength sec">
+  <div class="container">
+    <div class="str-header">
+      <p class="str-tag rv">Why Choose Me</p>
+      <h2 class="str-title rv rv-d1">選ばれる3つの理由</h2>
+    </div>
+    <div class="str-grid">
+      <div class="str-card rv">
+        <div class="str-icon">🚀</div>
+        <h3 class="str-card-title">圧倒的なスピード</h3>
+        <p class="str-card-desc">最新のAI技術を活用し、高品質なLP・Webサイトを最短5営業日で納品。急ぎの案件にも柔軟に対応します。</p>
+      </div>
+      <div class="str-card rv rv-d1">
+        <div class="str-icon">💰</div>
+        <h3 class="str-card-title">コストパフォーマンス</h3>
+        <p class="str-card-desc">制作会社に依頼する場合の1/2〜1/3のコストで同等品質のサイトを制作。個人事業主・中小企業の味方です。</p>
+      </div>
+      <div class="str-card rv rv-d2">
+        <div class="str-icon">📱</div>
+        <h3 class="str-card-title">モバイル完全対応</h3>
+        <p class="str-card-desc">全ての制作物はスマートフォン・タブレット完全対応。現在のWebアクセスの70%以上を占めるモバイルユーザーも逃しません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="works sec" id="works">
+  <div class="container">
+    <div class="works-header">
+      <p class="str-tag rv">Works</p>
+      <h2 class="str-title rv rv-d1">制作実績</h2>
+    </div>
+    <div class="works-grid">
+      <div class="work-card rv">
+        <div class="work-thumb wt-realestate">
+          <div class="work-thumb-overlay">
+            <a href="./works/grand-residence-shirokane-LP.html" class="work-thumb-btn" target="_blank">サイトを見る →</a>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag-item">不動産</span>
+            <span class="work-tag-item">LP</span>
+            <span class="work-tag-item">レスポンシブ</span>
+          </div>
+          <h3 class="work-name">GRAND RESIDENCE 白金台</h3>
+          <p class="work-desc">高級マンションの物件紹介LP。上質さを表現するデザインと、資料請求への導線設計。</p>
+        </div>
+      </div>
+      <div class="work-card rv rv-d1">
+        <div class="work-thumb wt-beauty">
+          <div class="work-thumb-overlay">
+            <a href="./works/bloom-beauty-salon-LP.html" class="work-thumb-btn" target="_blank">サイトを見る →</a>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag-item">美容サロン</span>
+            <span class="work-tag-item">LP</span>
+            <span class="work-tag-item">予約フォーム</span>
+          </div>
+          <h3 class="work-name">BLOOM beauty salon</h3>
+          <p class="work-desc">表参道の隠れ家サロンLP。ブランドの世界観を重視した柔らかなデザインと予約導線。</p>
+        </div>
+      </div>
+      <div class="work-card rv rv-d2">
+        <div class="work-thumb wt-gym">
+          <div class="work-thumb-overlay">
+            <a href="./works/forge-personal-gym-LP.html" class="work-thumb-btn" target="_blank">サイトを見る →</a>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag-item">パーソナルジム</span>
+            <span class="work-tag-item">LP</span>
+            <span class="work-tag-item">CTA設計</span>
+          </div>
+          <h3 class="work-name">FORGE パーソナルジム</h3>
+          <p class="work-desc">六本木のパーソナルジムLP。力強いデザインとコンバージョン重視の構成設計。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price sec" id="price">
+  <div class="container">
+    <div class="price-header">
+      <p class="str-tag rv">Price</p>
+      <h2 class="str-title rv rv-d1">料金プラン</h2>
+    </div>
+    <div class="price-table-wrap rv">
+      <table class="price-table">
+        <tr>
+          <th>LP制作（1ページ）</th>
+          <td><span class="price-val">¥50,000〜</span><br>コーディング・スマホ対応・フォーム設置込み<br>納期：5〜10営業日</td>
+        </tr>
+        <tr>
+          <th>Webサイト制作<br>（3〜5ページ）</th>
+          <td><span class="price-val">¥100,000〜</span><br>トップ＋下層ページ・お問い合わせフォーム<br>納期：10〜20営業日</td>
+        </tr>
+        <tr>
+          <th>既存サイト修正・改善</th>
+          <td><span class="price-val">¥10,000〜</span><br>テキスト変更・レイアウト調整・スマホ対応修正<br>納期：1〜3営業日</td>
+        </tr>
+        <tr>
+          <th>月額保守・更新</th>
+          <td><span class="price-val">¥5,000〜/月</span><br>テキスト更新・軽微な修正・サーバー管理<br>※制作をご依頼のお客様限定</td>
+        </tr>
+      </table>
+      <p class="price-note">※ 上記は目安の料金です。ページ数・機能・デザインの複雑さにより変動します。<br>※ お見積もりは無料です。お気軽にご相談ください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow sec" id="flow">
+  <div class="container">
+    <div class="flow-header">
+      <p class="str-tag rv">Flow</p>
+      <h2 class="str-title rv rv-d1">ご依頼の流れ</h2>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step rv">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <h3 class="flow-step-title">お問い合わせ</h3>
+          <p class="flow-step-desc">下記フォームまたはメールにて、ご要望をお聞かせください。24時間以内にご返信いたします。</p>
+        </div>
+      </div>
+      <div class="flow-step rv rv-d1">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <h3 class="flow-step-title">ヒアリング・お見積もり</h3>
+          <p class="flow-step-desc">オンライン（Zoom等）または対面で、詳細なご要望をヒアリング。無料でお見積書をお出しします。</p>
+        </div>
+      </div>
+      <div class="flow-step rv rv-d2">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <h3 class="flow-step-title">デザイン制作・確認</h3>
+          <p class="flow-step-desc">デザイン案をご確認いただき、フィードバックを反映。ご納得いただけるまで修正対応いたします。</p>
+        </div>
+      </div>
+      <div class="flow-step rv rv-d3">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+          <h3 class="flow-step-title">納品・公開</h3>
+          <p class="flow-step-desc">最終確認後、サーバーへのアップロード・ドメイン設定まで対応。公開後の修正も1回まで無料です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2 class="cta-title rv">まずは無料でご相談ください</h2>
+    <p class="cta-sub rv rv-d1">お見積もり・ご相談は完全無料。お気軽にお問い合わせください。</p>
+    <div class="cta-btns rv rv-d2">
+      <a href="#contact" class="btn-wh">無料相談フォームへ</a>
+      <a href="mailto:your-email@example.com" class="btn-outline-wh">メールで問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-sec sec" id="contact">
+  <div class="container">
+    <div class="form-header">
+      <p class="str-tag rv">Contact</p>
+      <h2 class="str-title rv rv-d1">お問い合わせ</h2>
+    </div>
+    <div class="form-wrap rv">
+      <form onsubmit="event.preventDefault();alert('デモページのため送信機能は実装されていません。\n実際にはフォーム送信サービス（Formspree等）を連携します。');">
+        <div class="form-row fh">
+          <div><label class="fl">お名前<span class="rq">*必須</span></label><input type="text" class="fi" placeholder="山田 太郎"></div>
+          <div><label class="fl">会社名</label><input type="text" class="fi" placeholder="株式会社○○"></div>
+        </div>
+        <div class="form-row fh">
+          <div><label class="fl">メールアドレス<span class="rq">*必須</span></label><input type="email" class="fi" placeholder="example@email.com"></div>
+          <div><label class="fl">電話番号</label><input type="tel" class="fi" placeholder="090-1234-5678"></div>
+        </div>
+        <div class="form-row">
+          <label class="fl">ご依頼内容<span class="rq">*必須</span></label>
+          <select class="fsl">
+            <option value="">選択してください</option>
+            <option>LP制作（1ページ）</option>
+            <option>Webサイト制作（複数ページ）</option>
+            <option>既存サイトの修正・改善</option>
+            <option>その他・相談したい</option>
+          </select>
+        </div>
+        <div class="form-row fh">
+          <div>
+            <label class="fl">ご予算</label>
+            <select class="fsl">
+              <option value="">選択してください</option>
+              <option>〜5万円</option>
+              <option>5〜10万円</option>
+              <option>10〜20万円</option>
+              <option>20万円以上</option>
+              <option>未定・相談したい</option>
+            </select>
+          </div>
+          <div>
+            <label class="fl">ご希望納期</label>
+            <select class="fsl">
+              <option value="">選択してください</option>
+              <option>1週間以内</option>
+              <option>2週間以内</option>
+              <option>1ヶ月以内</option>
+              <option>急ぎではない</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="fl">ご要望・ご質問</label>
+          <textarea class="ft" placeholder="作りたいサイトのイメージ、参考サイト、ご質問などお気軽にご記入ください"></textarea>
+        </div>
+        <button type="submit" class="fsub">送信する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">
+      ※このサイトはポートフォリオサイトのサンプルです。<br>
+      &copy; 2026 [あなたの名前] — LP・Webサイト制作
+    </p>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}));
+</script>
+</body>
+</html>
