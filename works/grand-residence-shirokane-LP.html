@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRAND RESIDENCE 白金台 | 都心の邸宅という選択</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #1a1f2e;
+  --navy-deep: #0d1017;
+  --gold: #c4a265;
+  --gold-light: #d4b87a;
+  --gold-pale: #f0e6d0;
+  --warm-white: #faf8f5;
+  --warm-gray: #f2eeea;
+  --text-primary: #2a2a2a;
+  --text-secondary: #6b6b6b;
+  --text-light: #999;
+  --border-subtle: #e5e0da;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text-primary);
+  background: var(--warm-white);
+  line-height: 1.8;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ─── Utility ─── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section-pad { padding: 100px 0; }
+
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 2;
+}
+
+.gold-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 24px 0;
+}
+
+/* ─── Scroll Animations ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+/* ─── Header / Nav ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 40px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+.nav.scrolled {
+  background: rgba(255,255,255,0.97);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.4s;
+}
+.nav.scrolled .nav-logo { color: var(--navy); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav.scrolled .nav-links a { color: var(--text-secondary); }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  padding: 8px 20px !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.12em !important;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(--gold) !important; color: #fff !important; }
+
+/* Mobile nav */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+.nav-hamburger span {
+  width: 22px;
+  height: 1.5px;
+  background: #fff;
+  transition: background 0.4s;
+}
+.nav.scrolled .nav-hamburger span { background: var(--navy); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav { padding: 0 20px; }
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(165deg, rgba(13,16,23,0.75) 0%, rgba(26,31,46,0.55) 40%, rgba(26,31,46,0.7) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900"><defs><linearGradient id="g1" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" stop-color="%231a2a3a"/><stop offset="50%25" stop-color="%232a3a4a"/><stop offset="100%25" stop-color="%231a2530"/></linearGradient></defs><rect fill="url(%23g1)" width="1600" height="900"/><rect x="200" y="300" width="400" height="280" rx="2" fill="%23283848" opacity="0.5"/><rect x="650" y="250" width="350" height="330" rx="2" fill="%23243444" opacity="0.4"/><rect x="1050" y="320" width="300" height="260" rx="2" fill="%23263646" opacity="0.3"/><rect x="100" y="620" width="1400" height="4" fill="%23384858" opacity="0.2"/></svg>') center/cover;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 0 24px;
+}
+.hero-eyecatch {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.3s forwards;
+}
+.hero-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.6s forwards;
+}
+.hero-sub {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 48px;
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.9s forwards;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.2s forwards;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 40px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(196,162,101,0.3); }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 40px;
+  background: transparent;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.35);
+  transition: all 0.3s;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.5s forwards;
+}
+.hero-scroll::after {
+  content: '';
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollLine 2s ease infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollLine {
+  0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+}
+
+/* ─── Concept ─── */
+.concept { background: #fff; }
+.concept-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.concept-visual {
+  aspect-ratio: 4/3;
+  background:
+    linear-gradient(135deg, #d4cec4 0%, #e8e2d8 50%, #c8c0b4 100%);
+  position: relative;
+  overflow: hidden;
+}
+.concept-visual::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.concept-visual::after {
+  content: '外観イメージ';
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  font-size: 0.7rem;
+  color: rgba(0,0,0,0.35);
+  letter-spacing: 0.2em;
+}
+.concept-text .section-title { margin-top: 8px; }
+.concept-lead {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  line-height: 2.2;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.concept-body {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 2.2;
+}
+
+@media (max-width: 768px) {
+  .concept-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ─── Features ─── */
+.features { background: var(--warm-white); }
+.features-header { text-align: center; margin-bottom: 60px; }
+.features-header .section-subtitle { margin: 0 auto; }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.feature-card {
+  background: #fff;
+  padding: 40px 30px;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+.feature-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--gold-pale);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.feature-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+.feature-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 2;
+}
+@media (max-width: 768px) {
+  .features-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── Plan ─── */
+.plan { background: #fff; }
+.plan-header { text-align: center; margin-bottom: 60px; }
+.plan-types {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.plan-card {
+  border: 1px solid var(--border-subtle);
+  padding: 32px 24px;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+.plan-card:hover { border-color: var(--gold); }
+.plan-card-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.plan-card-name {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.plan-card-size {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.plan-card-size span {
+  font-size: 0.85rem;
+}
+.plan-card-price {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.plan-card-detail {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  line-height: 2;
+}
+.plan-visual {
+  aspect-ratio: 16/7;
+  background: linear-gradient(135deg, #eae4dc 0%, #f0ece6 50%, #e2dcd4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.plan-visual-text {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 768px) {
+  .plan-types { grid-template-columns: 1fr; }
+}
+
+/* ─── Location ─── */
+.location { background: var(--navy); color: #fff; position: relative; overflow: hidden; }
+.location::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(196,162,101,0.08);
+  border-radius: 50%;
+}
+.location .section-label { color: var(--gold); }
+.location .section-title { color: #fff; }
+.location-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.location-info .section-subtitle {
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 40px;
+}
+.location-list { list-style: none; }
+.location-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.85rem;
+}
+.location-list .loc-name { color: rgba(255,255,255,0.9); font-weight: 400; }
+.location-list .loc-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+.location-map {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #242a3a, #1e2432);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.location-map::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border: 1px solid rgba(196,162,101,0.15);
+}
+.location-map-text {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 768px) {
+  .location-inner { grid-template-columns: 1fr; }
+}
+
+/* ─── Testimonials ─── */
+.testimonials { background: var(--warm-gray); }
+.testimonials-header { text-align: center; margin-bottom: 60px; }
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+.testimonial-card {
+  background: #fff;
+  padding: 36px;
+  position: relative;
+}
+.testimonial-card::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  color: var(--gold-pale);
+  position: absolute;
+  top: 16px;
+  left: 28px;
+  line-height: 1;
+}
+.testimonial-text {
+  font-size: 0.85rem;
+  line-height: 2.2;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+}
+.testimonial-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.testimonial-detail {
+  font-size: 0.72rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .testimonial-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── FAQ ─── */
+.faq { background: #fff; }
+.faq-header { text-align: center; margin-bottom: 60px; }
+.faq-list { max-width: 800px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+}
+.faq-question::before {
+  content: 'Q.';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+.faq-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--text-light);
+  transition: transform 0.3s ease;
+}
+.faq-icon::before {
+  width: 12px; height: 1px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.faq-icon::after {
+  width: 1px; height: 12px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.faq-item.open .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-answer-inner {
+  padding: 0 0 24px 36px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 2.2;
+}
+.faq-item.open .faq-answer { max-height: 300px; }
+
+/* ─── CTA Section ─── */
+.cta-section {
+  background:
+    linear-gradient(135deg, rgba(26,31,46,0.95), rgba(13,16,23,0.95)),
+    linear-gradient(45deg, #1a2a3a, #2a3a4a);
+  padding: 80px 0;
+  text-align: center;
+  color: #fff;
+}
+.cta-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.cta-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+.cta-sub {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 40px;
+}
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ─── Form ─── */
+.form-section { background: var(--warm-gray); }
+.form-header { text-align: center; margin-bottom: 50px; }
+.form-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 50px 40px;
+}
+.form-row {
+  margin-bottom: 24px;
+}
+.form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+.form-label .required {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 2px 8px;
+  margin-left: 8px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-subtle);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  background: #fff;
+  transition: border-color 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23999' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-textarea { height: 120px; resize: vertical; }
+.form-row-half {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-check {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.form-check input[type="checkbox"] {
+  margin-top: 4px;
+  accent-color: var(--gold);
+}
+.form-check label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+.form-check a { color: var(--gold); }
+.form-submit {
+  width: 100%;
+  padding: 18px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.form-submit:hover { background: var(--gold-light); }
+
+@media (max-width: 768px) {
+  .form-wrapper { padding: 30px 20px; }
+  .form-row-half { grid-template-columns: 1fr; }
+}
+
+/* ─── Overview Table ─── */
+.overview { background: #fff; }
+.overview-header { text-align: center; margin-bottom: 50px; }
+.overview-table {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+.overview-table th, .overview-table td {
+  padding: 16px 20px;
+  font-size: 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+.overview-table th {
+  width: 160px;
+  font-weight: 500;
+  background: var(--warm-gray);
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+}
+.overview-table td {
+  color: var(--text-secondary);
+  line-height: 1.9;
+}
+
+/* ─── Footer ─── */
+.footer {
+  background: var(--navy-deep);
+  color: rgba(255,255,255,0.5);
+  padding: 50px 0 30px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 12px;
+}
+.footer-address {
+  font-size: 0.75rem;
+  line-height: 2;
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-copy {
+  text-align: center;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.1em;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+@media (max-width: 768px) {
+  .footer-inner { flex-direction: column; gap: 30px; }
+  .footer-links { flex-direction: column; gap: 12px; }
+}
+
+/* ─── Floating CTA (Mobile) ─── */
+.floating-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(26,31,46,0.97);
+  padding: 12px 16px;
+  justify-content: center;
+  gap: 10px;
+}
+.floating-cta a {
+  flex: 1;
+  max-width: 180px;
+  text-align: center;
+  padding: 12px 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  font-weight: 500;
+}
+.floating-cta .fc-primary {
+  background: var(--gold);
+  color: #fff;
+}
+.floating-cta .fc-secondary {
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .floating-cta { display: flex; }
+  body { padding-bottom: 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">GRAND RESIDENCE</a>
+  <div class="nav-links">
+    <a href="#concept">コンセプト</a>
+    <a href="#features">特徴</a>
+    <a href="#plan">間取り</a>
+    <a href="#location">ロケーション</a>
+    <a href="#overview">物件概要</a>
+    <a href="#contact" class="nav-cta">資料請求</a>
+  </div>
+  <div class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyecatch">Shirokane-dai, Minato-ku</p>
+    <h1 class="hero-title">
+      都心に佇む、<br>静謐なる邸宅。
+    </h1>
+    <p class="hero-sub">白金台の地に、全28邸の新たなレジデンスが誕生。</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">資料請求（無料）</a>
+      <a href="#contact" class="btn-outline">来場予約</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ─── CONCEPT ─── -->
+<section class="concept section-pad" id="concept">
+  <div class="container">
+    <div class="concept-inner">
+      <div class="concept-visual reveal"></div>
+      <div class="concept-text">
+        <p class="section-label reveal">Concept</p>
+        <h2 class="section-title reveal reveal-delay-1">
+          時を超えて愛される、<br>本物の住まいを。
+        </h2>
+        <div class="gold-line reveal reveal-delay-1"></div>
+        <p class="concept-lead reveal reveal-delay-2">
+          白金台の豊かな緑と歴史に寄り添い、<br>
+          住まう方の人生を深く豊かに彩る邸宅。
+        </p>
+        <p class="concept-body reveal reveal-delay-3">
+          自然石と無垢材を基調としたファサードは、四季の移ろいとともに表情を変え、年月を経るほどに味わいを増していきます。
+          エントランスホールには、天然御影石と間接照明が織りなす静謐な空間が広がり、日常の喧騒から解き放たれる時間をお約束します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section class="features section-pad" id="features">
+  <div class="container">
+    <div class="features-header">
+      <p class="section-label reveal">Features</p>
+      <h2 class="section-title reveal reveal-delay-1">選ばれる理由</h2>
+      <p class="section-subtitle reveal reveal-delay-2">
+        素材、構造、設計思想のすべてにおいて<br>妥協なき品質を追求しました。
+      </p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-number">01</div>
+        <h3 class="feature-title">免震構造</h3>
+        <p class="feature-desc">
+          地震の揺れを大幅に低減する免震構造を採用。大切なご家族と資産を守る、最高水準の安全性を確保しています。
+        </p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-number">02</div>
+        <h3 class="feature-title">天然素材の意匠</h3>
+        <p class="feature-desc">
+          イタリア産大理石、国産檜、ウォールナット無垢材。本物だけが持つ質感と経年美が、住空間に深い豊かさをもたらします。
+        </p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-number">03</div>
+        <h3 class="feature-title">24時間コンシェルジュ</h3>
+        <p class="feature-desc">
+          ホテルライクなコンシェルジュサービスが、クリーニングの手配からレストラン予約まで、日々の暮らしをサポートいたします。
+        </p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-number">04</div>
+        <h3 class="feature-title">全邸南向き設計</h3>
+        <p class="feature-desc">
+          全28邸すべてが南向き。天井高2.6mの開放的なリビングに、一年を通じて豊かな陽光が降り注ぎます。
+        </p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-number">05</div>
+        <h3 class="feature-title">先進のスマートホーム</h3>
+        <p class="feature-desc">
+          照明、空調、セキュリティをスマートフォンで一括管理。外出先からのエアコン操作やインターホン確認にも対応しています。
+        </p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-number">06</div>
+        <h3 class="feature-title">各階ゴミステーション</h3>
+        <p class="feature-desc">
+          24時間利用可能なゴミステーションを各階に設置。ディスポーザーも全邸標準装備で、毎日の暮らしを快適にします。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PLAN ─── -->
+<section class="plan section-pad" id="plan">
+  <div class="container">
+    <div class="plan-header">
+      <p class="section-label reveal">Floor Plan</p>
+      <h2 class="section-title reveal reveal-delay-1">間取りプラン</h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="margin: 0 auto;">
+        多様なライフスタイルに応える3つのプランをご用意
+      </p>
+    </div>
+    <div class="plan-types">
+      <div class="plan-card reveal">
+        <p class="plan-card-label">Type A</p>
+        <h3 class="plan-card-name">1LDK</h3>
+        <p class="plan-card-size">54.82<span>㎡</span></p>
+        <p class="plan-card-price">8,900万円台〜</p>
+        <p class="plan-card-detail">
+          単身〜ご夫婦向け<br>
+          ワイドスパンバルコニー<br>
+          ウォークインクローゼット付
+        </p>
+      </div>
+      <div class="plan-card reveal reveal-delay-1">
+        <p class="plan-card-label">Type B</p>
+        <h3 class="plan-card-name">2LDK</h3>
+        <p class="plan-card-size">72.15<span>㎡</span></p>
+        <p class="plan-card-price">1億2,800万円台〜</p>
+        <p class="plan-card-detail">
+          ご夫婦〜ファミリー向け<br>
+          対面式キッチン<br>
+          2面採光・角部屋プラン
+        </p>
+      </div>
+      <div class="plan-card reveal reveal-delay-2">
+        <p class="plan-card-label">Type C</p>
+        <h3 class="plan-card-name">3LDK</h3>
+        <p class="plan-card-size">95.40<span>㎡</span></p>
+        <p class="plan-card-price">1億8,500万円台〜</p>
+        <p class="plan-card-detail">
+          ファミリー向けプレミアム<br>
+          専用テラス付（一部）<br>
+          家事動線に配慮した設計
+        </p>
+      </div>
+    </div>
+    <div class="plan-visual reveal">
+      <p class="plan-visual-text">間取り図イメージ（実際の納品時はここに図面が入ります）</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOCATION ─── -->
+<section class="location section-pad" id="location">
+  <div class="container">
+    <div class="location-inner">
+      <div class="location-info">
+        <p class="section-label reveal">Location</p>
+        <h2 class="section-title reveal reveal-delay-1">
+          都心の利便と、<br>白金台の静穏。
+        </h2>
+        <p class="section-subtitle reveal reveal-delay-2" style="color: rgba(255,255,255,0.6); margin-bottom: 40px;">
+          東京メトロ南北線・都営三田線「白金台」駅徒歩5分。
+          自然教育園の緑に包まれた、穏やかな住環境が広がります。
+        </p>
+        <ul class="location-list reveal reveal-delay-3">
+          <li>
+            <span class="loc-name">白金台駅（南北線・三田線）</span>
+            <span class="loc-time">徒歩 5 min</span>
+          </li>
+          <li>
+            <span class="loc-name">目黒駅（JR山手線）</span>
+            <span class="loc-time">徒歩 12 min</span>
+          </li>
+          <li>
+            <span class="loc-name">国立科学博物館附属 自然教育園</span>
+            <span class="loc-time">徒歩 3 min</span>
+          </li>
+          <li>
+            <span class="loc-name">東京大学医科学研究所附属病院</span>
+            <span class="loc-time">徒歩 6 min</span>
+          </li>
+          <li>
+            <span class="loc-name">白金台どんぐり児童遊園</span>
+            <span class="loc-time">徒歩 4 min</span>
+          </li>
+          <li>
+            <span class="loc-name">品川駅（JR・新幹線）</span>
+            <span class="loc-time">車 8 min</span>
+          </li>
+        </ul>
+      </div>
+      <div class="location-map reveal">
+        <p class="location-map-text">地図イメージ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials section-pad">
+  <div class="container">
+    <div class="testimonials-header">
+      <p class="section-label reveal">Voice</p>
+      <h2 class="section-title reveal reveal-delay-1">ご購入者様の声</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">
+          以前はタワーマンションに住んでいましたが、落ち着いた低層レジデンスの暮らしに憧れ、こちらを選びました。白金台の閑静な環境と、行き届いたコンシェルジュサービスに大変満足しています。
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <p class="testimonial-name">A様ご夫妻</p>
+            <p class="testimonial-detail">40代 / 2LDK ご購入</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <p class="testimonial-text">
+          子どもの教育環境を重視して物件を探していました。自然教育園が徒歩圏内にあり、学区も良く、理想的な住環境です。天然素材の内装は子どもにも優しく、家族全員が気に入っています。
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div>
+            <p class="testimonial-name">S様ご家族</p>
+            <p class="testimonial-detail">30代 / 3LDK ご購入</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">
+          海外赴任から帰国後の住まいとして購入しました。セキュリティの高さと、スマートホーム機能の充実が決め手です。出張が多いため、外出先から自宅を管理できるのは非常に助かっています。
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">T</div>
+          <div>
+            <p class="testimonial-name">T様</p>
+            <p class="testimonial-detail">50代 / 1LDK ご購入</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <p class="testimonial-text">
+          資産価値の維持を重視していました。白金台というブランド立地に加え、免震構造や管理体制の質の高さから、長期的に価値を保てる物件だと判断しました。実際に住んでみて、その判断は正しかったと確信しています。
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div>
+            <p class="testimonial-name">M様</p>
+            <p class="testimonial-detail">60代 / 2LDK ご購入</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq section-pad">
+  <div class="container">
+    <div class="faq-header">
+      <p class="section-label reveal">FAQ</p>
+      <h2 class="section-title reveal reveal-delay-1">よくあるご質問</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          モデルルームの見学は予約制ですか？
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            はい、完全予約制とさせていただいております。お電話またはWebフォームより、ご希望の日時をお申し込みください。所要時間は約90分です。
+          </div>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          入居時期はいつ頃になりますか？
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            2027年3月下旬の竣工を予定しております。入居開始は2027年4月上旬を予定しておりますが、工事の進捗により若干変更となる場合がございます。
+          </div>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          駐車場はありますか？
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            敷地内に機械式駐車場を15台分ご用意しております。月額使用料は40,000円〜55,000円です。ハイルーフ対応区画もございます。先着順でのご案内となりますので、ご検討の方はお早めにご相談ください。
+          </div>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          ペットの飼育は可能ですか？
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            はい、管理規約に基づき、小型犬・猫の飼育が可能です（1住戸あたり2頭まで）。共用部ではリードの着用をお願いしております。ペット足洗い場も1階に設置しております。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="cta-label reveal">Contact Us</p>
+    <h2 class="cta-title reveal reveal-delay-1">
+      まずは資料請求から、<br>理想の住まい探しを。
+    </h2>
+    <p class="cta-sub reveal reveal-delay-2">
+      デジタルパンフレット・価格表を無料でお届けいたします
+    </p>
+    <div class="cta-buttons reveal reveal-delay-3">
+      <a href="#contact" class="btn-primary">無料資料請求</a>
+      <a href="#contact" class="btn-outline">来場予約はこちら</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FORM ─── -->
+<section class="form-section section-pad" id="contact">
+  <div class="container">
+    <div class="form-header">
+      <p class="section-label reveal">Contact</p>
+      <h2 class="section-title reveal reveal-delay-1">資料請求・来場予約</h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="margin: 0 auto;">
+        以下のフォームにご記入のうえ、お気軽にお問い合わせください。
+      </p>
+    </div>
+    <div class="form-wrapper reveal">
+      <form onsubmit="event.preventDefault(); alert('デモページのため送信機能は実装されていません。\n実際の案件では、フォームの送信先を設定します。');">
+        <div class="form-row">
+          <label class="form-label">お問い合わせ内容<span class="required">必須</span></label>
+          <select class="form-select">
+            <option value="">選択してください</option>
+            <option>資料請求</option>
+            <option>来場予約</option>
+            <option>オンライン相談</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-row form-row-half">
+          <div>
+            <label class="form-label">お名前（姓）<span class="required">必須</span></label>
+            <input type="text" class="form-input" placeholder="山田">
+          </div>
+          <div>
+            <label class="form-label">お名前（名）<span class="required">必須</span></label>
+            <input type="text" class="form-input" placeholder="太郎">
+          </div>
+        </div>
+        <div class="form-row form-row-half">
+          <div>
+            <label class="form-label">メールアドレス<span class="required">必須</span></label>
+            <input type="email" class="form-input" placeholder="example@email.com">
+          </div>
+          <div>
+            <label class="form-label">お電話番号<span class="required">必須</span></label>
+            <input type="tel" class="form-input" placeholder="090-1234-5678">
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="form-label">ご検討中の間取り</label>
+          <select class="form-select">
+            <option value="">選択してください</option>
+            <option>1LDK（Type A）</option>
+            <option>2LDK（Type B）</option>
+            <option>3LDK（Type C）</option>
+            <option>未定・相談したい</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">ご質問・ご要望</label>
+          <textarea class="form-textarea" placeholder="ご自由にご記入ください"></textarea>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="privacy">
+          <label for="privacy">
+            <a href="#">個人情報の取り扱い</a>に同意の上、送信してください。
+          </label>
+        </div>
+        <button type="submit" class="form-submit">送信する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ─── OVERVIEW ─── -->
+<section class="overview section-pad" id="overview">
+  <div class="container">
+    <div class="overview-header">
+      <p class="section-label reveal">Overview</p>
+      <h2 class="section-title reveal reveal-delay-1">物件概要</h2>
+    </div>
+    <table class="overview-table reveal">
+      <tr><th>物件名</th><td>GRAND RESIDENCE 白金台</td></tr>
+      <tr><th>所在地</th><td>東京都港区白金台3丁目（地番）</td></tr>
+      <tr><th>交通</th><td>東京メトロ南北線・都営三田線「白金台」駅 徒歩5分<br>JR山手線「目黒」駅 徒歩12分</td></tr>
+      <tr><th>総戸数</th><td>28戸（他に管理員室1戸）</td></tr>
+      <tr><th>構造・規模</th><td>鉄筋コンクリート造 地上7階建（免震構造）</td></tr>
+      <tr><th>専有面積</th><td>54.82㎡〜95.40㎡</td></tr>
+      <tr><th>間取り</th><td>1LDK〜3LDK</td></tr>
+      <tr><th>販売価格</th><td>8,900万円台〜1億8,500万円台</td></tr>
+      <tr><th>管理費</th><td>月額 28,500円〜47,200円</td></tr>
+      <tr><th>修繕積立金</th><td>月額 12,800円〜21,100円</td></tr>
+      <tr><th>竣工予定</th><td>2027年3月下旬（予定）</td></tr>
+      <tr><th>入居予定</th><td>2027年4月上旬（予定）</td></tr>
+      <tr><th>売主</th><td>株式会社グランドデベロップメント（※架空の企業名です）</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-logo">GRAND RESIDENCE 白金台</p>
+        <p class="footer-address">
+          〒108-0071 東京都港区白金台3丁目<br>
+          TEL: 0120-XXX-XXX（通話無料）<br>
+          営業時間: 10:00〜18:00（水曜定休）
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="#">物件概要</a>
+        <a href="#">個人情報保護方針</a>
+        <a href="#">特定商取引法に基づく表記</a>
+        <a href="#">サイトマップ</a>
+      </div>
+    </div>
+    <p class="footer-copy">
+      ※この物件はポートフォリオ用のサンプルです。実在する物件ではありません。<br>
+      &copy; 2026 GRAND RESIDENCE SHIROKANE-DAI. Sample Portfolio by [あなたの名前].
+    </p>
+  </div>
+</footer>
+
+<!-- ─── Floating CTA (Mobile) ─── -->
+<div class="floating-cta">
+  <a href="#contact" class="fc-primary">資料請求</a>
+  <a href="tel:0120000000" class="fc-secondary">電話する</a>
+</div>
+
+<!-- ─── JavaScript ─── -->
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

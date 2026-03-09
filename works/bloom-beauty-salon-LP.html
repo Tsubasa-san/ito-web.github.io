@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLOOM beauty salon | 表参道の隠れ家プライベートサロン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --blush: #e8c4b8;
+  --blush-deep: #d4a597;
+  --blush-light: #f5ebe7;
+  --sage: #8a9a7b;
+  --sage-light: #c5d1bc;
+  --cream: #fdf9f6;
+  --warm-beige: #f7f2ed;
+  --text-dark: #3a3330;
+  --text-mid: #6e6360;
+  --text-light: #a09894;
+  --border: #e8e2dd;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: var(--text-dark);
+  background: var(--cream);
+  line-height: 1.9;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.section-pad { padding: 100px 0; }
+
+/* Reveal animation */
+.rv { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.rv.v { opacity: 1; transform: translateY(0); }
+.rv-d1 { transition-delay: 0.12s; }
+.rv-d2 { transition-delay: 0.24s; }
+.rv-d3 { transition-delay: 0.36s; }
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 36px; transition: all 0.4s;
+}
+.nav.scrolled { background: rgba(253,249,246,0.96); box-shadow: 0 1px 12px rgba(0,0,0,0.04); }
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 400; letter-spacing: 0.15em;
+  color: #fff; text-decoration: none; transition: color 0.4s;
+}
+.nav.scrolled .nav-brand { color: var(--text-dark); }
+.nav-items { display: flex; gap: 24px; align-items: center; }
+.nav-items a {
+  font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.85);
+  text-decoration: none; transition: color 0.3s;
+}
+.nav.scrolled .nav-items a { color: var(--text-mid); }
+.nav-items a:hover { color: var(--blush); }
+.nav-reserve {
+  padding: 7px 18px !important; border: 1px solid var(--blush) !important;
+  color: var(--blush) !important; transition: all 0.3s !important;
+}
+.nav-reserve:hover { background: var(--blush) !important; color: #fff !important; }
+@media(max-width:768px){ .nav-items { display:none; } .nav { padding: 0 20px; } }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #c9a99e 0%, #dfc4b8 30%, #e8d5cc 50%, #d4b5a8 80%, #bfa090 100%);
+}
+.hero-bg::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 40%, rgba(255,255,255,0.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 70%, rgba(180,140,120,0.2) 0%, transparent 50%);
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.08), transparent 40%, transparent 60%, rgba(0,0,0,0.12));
+}
+.hero-content {
+  position: relative; z-index: 2; text-align: center; color: #fff; padding: 0 24px;
+}
+.hero-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem; letter-spacing: 0.5em; text-transform: uppercase;
+  margin-bottom: 20px; opacity: 0; animation: fu 0.8s ease 0.3s forwards;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 300;
+  letter-spacing: 0.08em; line-height: 1.5; margin-bottom: 12px;
+  opacity: 0; animation: fu 0.8s ease 0.6s forwards;
+}
+.hero-jp {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 0.9rem; font-weight: 300; letter-spacing: 0.2em;
+  margin-bottom: 40px; opacity: 0; animation: fu 0.8s ease 0.9s forwards;
+}
+.hero-btns {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fu 0.8s ease 1.2s forwards;
+}
+.btn-fill {
+  padding: 14px 36px; background: var(--blush-deep); color: #fff;
+  font-size: 0.8rem; font-weight: 400; letter-spacing: 0.12em;
+  text-decoration: none; border: none; cursor: pointer; transition: all 0.3s;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+.btn-fill:hover { background: #c99889; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,165,151,0.35); }
+.btn-ghost {
+  padding: 14px 36px; background: transparent; color: #fff;
+  font-size: 0.8rem; font-weight: 300; letter-spacing: 0.12em;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.45); cursor: pointer;
+  transition: all 0.3s; font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+.btn-ghost:hover { border-color: #fff; }
+
+.hero-badge {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem; letter-spacing: 0.35em; color: rgba(255,255,255,0.55);
+  opacity: 0; animation: fu 0.8s ease 1.5s forwards;
+}
+
+@keyframes fu {
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* ─── INTRO ─── */
+.intro { background: #fff; text-align: center; }
+.intro-eng {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--blush-deep); margin-bottom: 8px;
+}
+.intro-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 400; letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.intro-line { width: 30px; height: 1px; background: var(--blush); margin: 0 auto 24px; }
+.intro-text {
+  max-width: 620px; margin: 0 auto; font-size: 0.88rem;
+  color: var(--text-mid); line-height: 2.3;
+}
+
+/* ─── MENU ─── */
+.menu { background: var(--warm-beige); }
+.menu-header { text-align: center; margin-bottom: 60px; }
+.menu-eng {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--blush-deep); margin-bottom: 6px;
+}
+.menu-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 400; letter-spacing: 0.06em;
+}
+.menu-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.menu-card {
+  background: #fff; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+}
+.menu-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.menu-card-img {
+  height: 200px; position: relative; overflow: hidden;
+}
+.menu-card-img::after {
+  content: attr(data-label);
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 10px 16px; font-size: 0.65rem; letter-spacing: 0.2em;
+  color: #fff; background: linear-gradient(transparent, rgba(0,0,0,0.35));
+  font-family: 'Cormorant Garamond', serif; text-transform: uppercase;
+}
+.mc-facial { background: linear-gradient(135deg, #e8d5cc, #f0e0d6, #ddc5b8); }
+.mc-body { background: linear-gradient(135deg, #d4cfc6, #e2ddd4, #c8c3ba); }
+.mc-head { background: linear-gradient(135deg, #c5d1bc, #d5dfce, #b8c4b0); }
+.mc-bridal { background: linear-gradient(135deg, #f0e0d6, #f5ebe7, #e8d5cc); }
+.mc-aroma { background: linear-gradient(135deg, #d8cfc4, #e5ddd4, #cec5ba); }
+.mc-special { background: linear-gradient(135deg, #e0cdc4, #eaddd6, #d6c3b8); }
+
+.menu-card-body { padding: 24px 20px; }
+.menu-card-name {
+  font-size: 0.95rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 6px;
+}
+.menu-card-desc { font-size: 0.78rem; color: var(--text-mid); line-height: 1.9; margin-bottom: 14px; }
+.menu-card-meta { display: flex; justify-content: space-between; align-items: baseline; }
+.menu-card-time { font-size: 0.72rem; color: var(--text-light); }
+.menu-card-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 400; color: var(--blush-deep);
+}
+.menu-card-price span { font-size: 0.7rem; }
+
+@media(max-width:768px) { .menu-grid { grid-template-columns: 1fr; } }
+
+/* ─── FLOW ─── */
+.flow { background: #fff; }
+.flow-header { text-align: center; margin-bottom: 60px; }
+.flow-steps { max-width: 700px; margin: 0 auto; position: relative; }
+.flow-steps::before {
+  content: ''; position: absolute; left: 24px; top: 0; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.flow-step {
+  display: flex; gap: 28px; margin-bottom: 40px; position: relative;
+}
+.flow-step:last-child { margin-bottom: 0; }
+.flow-num {
+  width: 48px; height: 48px; flex-shrink: 0;
+  border-radius: 50%; background: var(--blush-light);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+  color: var(--blush-deep); position: relative; z-index: 1;
+}
+.flow-body {}
+.flow-step-title { font-size: 0.92rem; font-weight: 500; margin-bottom: 4px; }
+.flow-step-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 2; }
+
+/* ─── STYLIST ─── */
+.stylist { background: var(--warm-beige); }
+.stylist-header { text-align: center; margin-bottom: 60px; }
+.stylist-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.stylist-card { text-align: center; }
+.stylist-photo {
+  width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--blush-light), var(--sage-light));
+  display: flex; align-items: center; justify-content: center;
+}
+.stylist-photo-init {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: #fff; font-weight: 300;
+}
+.stylist-name { font-size: 0.95rem; font-weight: 500; margin-bottom: 2px; }
+.stylist-role { font-size: 0.72rem; color: var(--blush-deep); letter-spacing: 0.1em; margin-bottom: 10px; }
+.stylist-bio { font-size: 0.78rem; color: var(--text-mid); line-height: 2; }
+@media(max-width:768px) { .stylist-grid { grid-template-columns: 1fr; } }
+
+/* ─── VOICE ─── */
+.voice { background: #fff; }
+.voice-header { text-align: center; margin-bottom: 60px; }
+.voice-list { max-width: 700px; margin: 0 auto; }
+.voice-item {
+  padding: 28px 0; border-bottom: 1px solid var(--border);
+}
+.voice-stars { color: var(--blush-deep); font-size: 0.8rem; margin-bottom: 6px; letter-spacing: 2px; }
+.voice-text { font-size: 0.85rem; color: var(--text-mid); line-height: 2.2; margin-bottom: 8px; }
+.voice-attr { font-size: 0.72rem; color: var(--text-light); }
+
+/* ─── ACCESS ─── */
+.access { background: var(--warm-beige); }
+.access-header { text-align: center; margin-bottom: 50px; }
+.access-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+.access-info {}
+.access-table { width: 100%; border-collapse: collapse; }
+.access-table th, .access-table td {
+  padding: 12px 0; font-size: 0.82rem; text-align: left;
+  border-bottom: 1px solid var(--border); vertical-align: top;
+}
+.access-table th { width: 100px; font-weight: 500; color: var(--text-dark); }
+.access-table td { color: var(--text-mid); }
+.access-map {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #e2ddd4, #ece7e0);
+  display: flex; align-items: center; justify-content: center;
+}
+.access-map-text { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.15em; }
+@media(max-width:768px) { .access-inner { grid-template-columns: 1fr; } }
+
+/* ─── CTA ─── */
+.cta-band {
+  background: linear-gradient(135deg, var(--blush-deep), #c99889, var(--blush));
+  padding: 70px 0; text-align: center; color: #fff;
+}
+.cta-eng {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 10px;
+}
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 300; letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.cta-sub { font-size: 0.82rem; font-weight: 300; margin-bottom: 32px; opacity: 0.85; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-white {
+  padding: 14px 36px; background: #fff; color: var(--blush-deep);
+  font-size: 0.8rem; letter-spacing: 0.1em; text-decoration: none;
+  font-weight: 500; transition: all 0.3s; border: none; cursor: pointer;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.btn-ghost-w {
+  padding: 14px 36px; background: transparent; color: #fff;
+  font-size: 0.8rem; letter-spacing: 0.1em; text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.5); transition: all 0.3s;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+.btn-ghost-w:hover { border-color: #fff; }
+
+/* ─── FORM ─── */
+.form-section { background: #fff; }
+.form-header { text-align: center; margin-bottom: 50px; }
+.form-wrap { max-width: 620px; margin: 0 auto; }
+.form-row { margin-bottom: 20px; }
+.form-label {
+  display: block; font-size: 0.8rem; font-weight: 500;
+  margin-bottom: 6px; letter-spacing: 0.03em;
+}
+.form-label .req {
+  background: var(--blush-deep); color: #fff;
+  font-size: 0.58rem; padding: 2px 7px; margin-left: 8px;
+  font-weight: 400; letter-spacing: 0.08em; vertical-align: middle;
+}
+.f-input, .f-select, .f-textarea {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 0.85rem;
+  font-weight: 300; color: var(--text-dark); background: #fff;
+  transition: border-color 0.3s; border-radius: 0; appearance: none;
+}
+.f-input:focus, .f-select:focus, .f-textarea:focus { outline: none; border-color: var(--blush); }
+.f-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a09894' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+}
+.f-textarea { height: 110px; resize: vertical; }
+.form-half { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-note { font-size: 0.72rem; color: var(--text-light); margin-top: 16px; text-align: center; line-height: 2; }
+.form-submit {
+  display: block; width: 100%; margin-top: 24px; padding: 16px;
+  background: var(--blush-deep); color: #fff; border: none;
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 0.88rem;
+  font-weight: 500; letter-spacing: 0.12em; cursor: pointer; transition: all 0.3s;
+}
+.form-submit:hover { background: #c99889; }
+@media(max-width:768px) { .form-half { grid-template-columns: 1fr; } }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--text-dark); color: rgba(255,255,255,0.45);
+  padding: 40px 0 24px; text-align: center;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+.footer-addr { font-size: 0.72rem; line-height: 2; margin-bottom: 20px; }
+.footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 0.68rem; color: rgba(255,255,255,0.35); text-decoration: none; letter-spacing: 0.05em; }
+.footer-links a:hover { color: var(--blush); }
+.footer-copy { font-size: 0.62rem; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; }
+
+/* ─── Mobile Sticky ─── */
+.m-sticky {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+  background: rgba(58,51,48,0.96); padding: 10px 16px;
+  justify-content: center; gap: 10px;
+}
+.m-sticky a {
+  flex: 1; max-width: 170px; text-align: center; padding: 11px 8px;
+  font-size: 0.72rem; letter-spacing: 0.08em; text-decoration: none; font-weight: 500;
+}
+.m-sticky .ms-primary { background: var(--blush-deep); color: #fff; }
+.m-sticky .ms-secondary { border: 1px solid rgba(255,255,255,0.35); color: #fff; }
+@media(max-width:768px) { .m-sticky { display: flex; } body { padding-bottom: 56px; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#" class="nav-brand">BLOOM</a>
+  <div class="nav-items">
+    <a href="#menu">メニュー</a>
+    <a href="#flow">ご利用の流れ</a>
+    <a href="#stylist">スタッフ</a>
+    <a href="#access">アクセス</a>
+    <a href="#contact" class="nav-reserve">ご予約</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Private beauty salon in Omotesando</p>
+    <h1 class="hero-title">BLOOM</h1>
+    <p class="hero-jp">あなただけの美しさが、ここで花開く。</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-fill">ご予約はこちら</a>
+      <a href="#menu" class="btn-ghost">メニューを見る</a>
+    </div>
+  </div>
+  <div class="hero-badge">Scroll</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro section-pad">
+  <div class="container">
+    <p class="intro-eng rv">About Us</p>
+    <h2 class="intro-title rv rv-d1">完全予約制、一日5組限定。</h2>
+    <div class="intro-line rv rv-d1"></div>
+    <p class="intro-text rv rv-d2">
+      BLOOMは、表参道の静かな路地に佇む完全予約制のプライベートサロンです。
+      お客様一人ひとりの肌質・体質・ライフスタイルに合わせた完全オーダーメイドの施術で、
+      本来の美しさを引き出します。喧騒から離れた隠れ家空間で、
+      心からリラックスできる特別なひとときをお過ごしください。
+    </p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu section-pad" id="menu">
+  <div class="container">
+    <div class="menu-header">
+      <p class="menu-eng rv">Treatment Menu</p>
+      <h2 class="menu-title rv rv-d1">施術メニュー</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card rv">
+        <div class="menu-card-img mc-facial" data-label="Facial"></div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-name">プレミアムフェイシャル</h3>
+          <p class="menu-card-desc">厳選されたオーガニック成分と独自のハンド技術で、くすみ・たるみにアプローチ。透明感あふれる素肌へ。</p>
+          <div class="menu-card-meta">
+            <span class="menu-card-time">60min</span>
+            <span class="menu-card-price">¥16,500<span>（税込）</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card rv rv-d1">
+        <div class="menu-card-img mc-body" data-label="Body"></div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-name">全身デトックスケア</h3>
+          <p class="menu-card-desc">リンパドレナージュと温熱ケアを組み合わせた全身トリートメント。むくみを解消し、軽やかなボディラインへ。</p>
+          <div class="menu-card-meta">
+            <span class="menu-card-time">90min</span>
+            <span class="menu-card-price">¥22,000<span>（税込）</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card rv rv-d2">
+        <div class="menu-card-img mc-head" data-label="Head Spa"></div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-name">ディープヘッドスパ</h3>
+          <p class="menu-card-desc">頭皮から首・肩までを丁寧にほぐし、深いリラクゼーションへ。眼精疲労やストレス軽減にも効果的です。</p>
+          <div class="menu-card-meta">
+            <span class="menu-card-time">45min</span>
+            <span class="menu-card-price">¥9,900<span>（税込）</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card rv">
+        <div class="menu-card-img mc-bridal" data-label="Bridal"></div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-name">ブライダルエステ</h3>
+          <p class="menu-card-desc">挙式日から逆算した計画的なケアプラン。フェイシャル・ボディ・背中ケアで、最高の一日を迎えましょう。</p>
+          <div class="menu-card-meta">
+            <span class="menu-card-time">120min</span>
+            <span class="menu-card-price">¥33,000<span>（税込）</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card rv rv-d1">
+        <div class="menu-card-img mc-aroma" data-label="Aroma"></div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-name">アロマ全身トリートメント</h3>
+          <p class="menu-card-desc">お好みのエッセンシャルオイルをブレンド。心と身体のバランスを整える、至福のアロマ体験をお届けします。</p>
+          <div class="menu-card-meta">
+            <span class="menu-card-time">75min</span>
+            <span class="menu-card-price">¥19,800<span>（税込）</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card rv rv-d2">
+        <div class="menu-card-img mc-special" data-label="Special"></div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-name">スペシャルフルコース</h3>
+          <p class="menu-card-desc">フェイシャル・ボディ・ヘッドスパを贅沢に組み合わせたフルコース。大切な日の前や自分へのご褒美に。</p>
+          <div class="menu-card-meta">
+            <span class="menu-card-time">150min</span>
+            <span class="menu-card-price">¥44,000<span>（税込）</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow section-pad" id="flow">
+  <div class="container">
+    <div class="flow-header">
+      <p class="menu-eng rv">Flow</p>
+      <h2 class="menu-title rv rv-d1">ご利用の流れ</h2>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step rv">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <h3 class="flow-step-title">ご予約</h3>
+          <p class="flow-step-desc">Web予約フォームまたはお電話にて、ご希望の日時・メニューをお選びください。当日予約も空きがあれば可能です。</p>
+        </div>
+      </div>
+      <div class="flow-step rv rv-d1">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <h3 class="flow-step-title">カウンセリング</h3>
+          <p class="flow-step-desc">お肌の状態やお悩みを丁寧にヒアリング。最適な施術プランをご提案いたします（約15分）。</p>
+        </div>
+      </div>
+      <div class="flow-step rv rv-d2">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <h3 class="flow-step-title">施術</h3>
+          <p class="flow-step-desc">完全個室の落ち着いた空間で、オーダーメイドの施術をお受けいただきます。途中でのお好みの調整も随時承ります。</p>
+        </div>
+      </div>
+      <div class="flow-step rv rv-d3">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+          <h3 class="flow-step-title">アフターカウンセリング</h3>
+          <p class="flow-step-desc">施術後の状態を確認し、ホームケアのアドバイスをお伝えします。ハーブティーでゆっくりおくつろぎください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STYLIST -->
+<section class="stylist section-pad" id="stylist">
+  <div class="container">
+    <div class="stylist-header">
+      <p class="menu-eng rv">Staff</p>
+      <h2 class="menu-title rv rv-d1">スタッフ紹介</h2>
+    </div>
+    <div class="stylist-grid">
+      <div class="stylist-card rv">
+        <div class="stylist-photo"><span class="stylist-photo-init">A</span></div>
+        <h3 class="stylist-name">青山 美咲</h3>
+        <p class="stylist-role">Owner / Esthetician</p>
+        <p class="stylist-bio">エステティシャン歴15年。大手サロンの店長を経て独立。日本エステティック協会認定エステティシャン。</p>
+      </div>
+      <div class="stylist-card rv rv-d1">
+        <div class="stylist-photo" style="background: linear-gradient(135deg, var(--sage-light), #b8c8b0);"><span class="stylist-photo-init">K</span></div>
+        <h3 class="stylist-name">小林 沙織</h3>
+        <p class="stylist-role">Senior Esthetician</p>
+        <p class="stylist-bio">アロマセラピスト・リンパドレナージュの資格を持つスペシャリスト。心と身体のトータルケアを得意とする。</p>
+      </div>
+      <div class="stylist-card rv rv-d2">
+        <div class="stylist-photo" style="background: linear-gradient(135deg, var(--blush), #e0c8be);"><span class="stylist-photo-init">M</span></div>
+        <h3 class="stylist-name">松田 凛</h3>
+        <p class="stylist-role">Esthetician</p>
+        <p class="stylist-bio">フェイシャルケアを専門とし、肌分析に基づいたパーソナライズケアに定評あり。ブライダルエステも担当。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="voice section-pad">
+  <div class="container">
+    <div class="voice-header">
+      <p class="menu-eng rv">Customer Voice</p>
+      <h2 class="menu-title rv rv-d1">お客様の声</h2>
+    </div>
+    <div class="voice-list">
+      <div class="voice-item rv">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">初めて伺いましたが、カウンセリングがとても丁寧で安心しました。施術後は肌のトーンが明らかに上がり、翌日の化粧ノリも全然違いました。定期的に通いたいと思います。</p>
+        <p class="voice-attr">30代女性 / プレミアムフェイシャル</p>
+      </div>
+      <div class="voice-item rv rv-d1">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">結婚式の3ヶ月前から通い始めました。回を重ねるごとに肌の調子が良くなり、当日は自信を持って迎えられました。担当の松田さんに感謝です。</p>
+        <p class="voice-attr">20代女性 / ブライダルエステ</p>
+      </div>
+      <div class="voice-item rv rv-d2">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">デスクワークで首・肩がガチガチだったのですが、ヘッドスパ後は視界がクリアになるほどスッキリ。完全個室で周りを気にせずリラックスできるのも嬉しいポイントです。</p>
+        <p class="voice-attr">40代女性 / ディープヘッドスパ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access section-pad" id="access">
+  <div class="container">
+    <div class="access-header">
+      <p class="menu-eng rv">Access</p>
+      <h2 class="menu-title rv rv-d1">アクセス</h2>
+    </div>
+    <div class="access-inner rv">
+      <div class="access-info">
+        <table class="access-table">
+          <tr><th>住所</th><td>東京都渋谷区神宮前4丁目<br>○○ビル 3F</td></tr>
+          <tr><th>最寄駅</th><td>東京メトロ「表参道」駅 A2出口 徒歩3分</td></tr>
+          <tr><th>営業時間</th><td>10:00〜20:00（最終受付 18:00）</td></tr>
+          <tr><th>定休日</th><td>毎週火曜日・第3月曜日</td></tr>
+          <tr><th>電話</th><td>03-XXXX-XXXX</td></tr>
+          <tr><th>駐車場</th><td>近隣コインパーキングをご利用ください</td></tr>
+        </table>
+      </div>
+      <div class="access-map">
+        <p class="access-map-text">Google Map（実際の案件ではここに地図を埋め込みます）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <p class="cta-eng rv">Reservation</p>
+    <h2 class="cta-title rv rv-d1">ご予約・お問い合わせ</h2>
+    <p class="cta-sub rv rv-d2">初回限定 20% OFF キャンペーン実施中</p>
+    <div class="cta-btns rv rv-d3">
+      <a href="#contact" class="btn-white">Web予約</a>
+      <a href="tel:03-0000-0000" class="btn-ghost-w">電話で予約</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section section-pad" id="contact">
+  <div class="container">
+    <div class="form-header">
+      <p class="menu-eng rv">Reservation</p>
+      <h2 class="menu-title rv rv-d1">ご予約フォーム</h2>
+    </div>
+    <div class="form-wrap rv">
+      <form onsubmit="event.preventDefault(); alert('デモページのため送信機能は実装されていません。');">
+        <div class="form-row form-half">
+          <div>
+            <label class="form-label">お名前<span class="req">必須</span></label>
+            <input type="text" class="f-input" placeholder="山田 花子">
+          </div>
+          <div>
+            <label class="form-label">フリガナ<span class="req">必須</span></label>
+            <input type="text" class="f-input" placeholder="ヤマダ ハナコ">
+          </div>
+        </div>
+        <div class="form-row form-half">
+          <div>
+            <label class="form-label">メールアドレス<span class="req">必須</span></label>
+            <input type="email" class="f-input" placeholder="example@email.com">
+          </div>
+          <div>
+            <label class="form-label">電話番号<span class="req">必須</span></label>
+            <input type="tel" class="f-input" placeholder="090-1234-5678">
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="form-label">ご希望メニュー<span class="req">必須</span></label>
+          <select class="f-select">
+            <option value="">選択してください</option>
+            <option>プレミアムフェイシャル（60min / ¥16,500）</option>
+            <option>全身デトックスケア（90min / ¥22,000）</option>
+            <option>ディープヘッドスパ（45min / ¥9,900）</option>
+            <option>ブライダルエステ（120min / ¥33,000）</option>
+            <option>アロマ全身トリートメント（75min / ¥19,800）</option>
+            <option>スペシャルフルコース（150min / ¥44,000）</option>
+            <option>相談して決めたい</option>
+          </select>
+        </div>
+        <div class="form-row form-half">
+          <div>
+            <label class="form-label">ご希望日<span class="req">必須</span></label>
+            <input type="date" class="f-input">
+          </div>
+          <div>
+            <label class="form-label">ご希望時間帯</label>
+            <select class="f-select">
+              <option value="">選択してください</option>
+              <option>午前（10:00〜12:00）</option>
+              <option>午後（12:00〜16:00）</option>
+              <option>夕方（16:00〜18:00）</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="form-label">ご質問・ご要望</label>
+          <textarea class="f-textarea" placeholder="アレルギーや肌の気になる点などございましたらご記入ください"></textarea>
+        </div>
+        <p class="form-note">※ ご予約確定のお返事はメールにて24時間以内にお送りいたします。</p>
+        <button type="submit" class="form-submit">予約を申し込む</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-brand">BLOOM</p>
+    <p class="footer-addr">
+      〒150-0001 東京都渋谷区神宮前4丁目 ○○ビル 3F<br>
+      TEL: 03-XXXX-XXXX ｜ 営業時間: 10:00〜20:00（火曜定休）
+    </p>
+    <div class="footer-links">
+      <a href="#">メニュー</a>
+      <a href="#">スタッフ紹介</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">特定商取引法に基づく表記</a>
+    </div>
+    <p class="footer-copy">
+      ※この店舗はポートフォリオ用のサンプルです。実在する店舗ではありません。<br>
+      &copy; 2026 BLOOM beauty salon. Sample Portfolio by [あなたの名前].
+    </p>
+  </div>
+</footer>
+
+<div class="m-sticky">
+  <a href="#contact" class="ms-primary">Web予約</a>
+  <a href="tel:03-0000-0000" class="ms-secondary">電話予約</a>
+</div>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('v'); }), { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault(); const t = document.querySelector(a.getAttribute('href'));
+  if(t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+}));
+</script>
+</body>
+</html>
